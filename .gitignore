@@ -21,3 +21,22 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+
+# Database
+*.sql
+*.txt
+database_scripts/*.txt
+schema_final.txt
+ventas_schema.txt
+schema_output.txt
+db_status.txt
+types.txt

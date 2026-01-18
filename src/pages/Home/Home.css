@@ -1,0 +1,64 @@
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--bg-gradient);
+    font-family: 'Outfit', sans-serif;
+    text-align: center;
+}
+
+.home-content {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.home-title {
+    color: var(--primary-pink);
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+.home-button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 20px;
+}
+
+.btn-large {
+    width: 100%;
+    padding: 16px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: block;
+}
+
+.btn-agenda {
+    background: #ed4b91;
+    color: white;
+    box-shadow: 0 4px 15px rgba(237, 75, 145, 0.3);
+}
+
+.btn-agenda:hover {
+    background: #d81b60;
+    transform: translateY(-2px);
+}
+
+.btn-login-home {
+    background: #ffebee;
+    color: #ed4b91;
+}
+
+.btn-login-home:hover {
+    background: #fce4ec;
+    transform: translateY(-2px);
+}

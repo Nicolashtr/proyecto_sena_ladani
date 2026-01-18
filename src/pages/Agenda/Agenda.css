@@ -1,0 +1,96 @@
+.agenda-container {
+    min-height: 100vh;
+    background: var(--bg-gradient);
+    font-family: 'Outfit', sans-serif;
+    padding: 20px;
+    position: relative;
+}
+
+.top-nav {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.btn-small-login {
+    background: #ed4b91;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.agenda-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.agenda-title {
+    color: #333;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.agenda-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.agenda-form input,
+.agenda-form select {
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 25px;
+    background-color: #fce4ec;
+    color: #333;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.agenda-form input::placeholder {
+    color: #888;
+}
+
+.agenda-form input:focus,
+.agenda-form select:focus {
+    background-color: #f8bbd0;
+    box-shadow: 0 0 0 3px rgba(237, 75, 145, 0.1);
+}
+
+.btn-submit-agenda {
+    background: #ed4b91;
+    color: white;
+    padding: 16px;
+    border-radius: 25px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(237, 75, 145, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-submit-agenda:hover {
+    background: #d81b60;
+    transform: translateY(-2px);
+}
+
+.btn-submit-agenda:disabled {
+    background: #f48fb1;
+    cursor: not-allowed;
+}

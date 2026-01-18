@@ -1,0 +1,214 @@
+.estilista-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #ed4b91;
+    font-family: 'Outfit', sans-serif;
+    color: white;
+    overflow: hidden;
+}
+
+.estilista-header {
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.header-left p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.date-text {
+    font-size: 14px;
+}
+
+.user-avatar-circle {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ed4b91;
+}
+
+.estilista-main {
+    flex: 1;
+    display: flex;
+    background: white;
+    border-radius: 30px 30px 0 0;
+    margin: 0 10px;
+    overflow: hidden;
+    color: #333;
+}
+
+.services-sidebar {
+    width: 320px;
+    background-color: #ed4b91;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+}
+
+.services-sidebar h3 {
+    color: white;
+    font-size: 20px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.services-sidebar p.sidebar-subtitle {
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.service-card {
+    background: white;
+    border-radius: 15px;
+    padding: 12px;
+    color: #333;
+    font-size: 13px;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.service-card:hover {
+    transform: scale(1.02);
+}
+
+.service-card h4 {
+    margin: 0 0 5px 0;
+    color: #ed4b91;
+}
+
+.total-cost-box {
+    margin-top: auto;
+    background: white;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+    color: #ed4b91;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.service-detail-view {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.detail-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.detail-info-group {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 20px;
+    align-items: center;
+    text-align: left;
+    max-width: 400px;
+    margin-bottom: 30px;
+}
+
+.icon-box {
+    font-size: 24px;
+    color: #ed4b91;
+}
+
+.info-label {
+    color: #ed4b91;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.info-value {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.btn-finish {
+    background: #ed4b91;
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
+
+.btn-finish:hover {
+    background: #d81b60;
+}
+
+.estilista-footer {
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.footer-btn {
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 25px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.footer-btn.active {
+    background: white;
+    color: #ed4b91;
+}
+
+.logout-btn-est {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    color: #ed4b91;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}

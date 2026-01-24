@@ -1,70 +1,116 @@
-# Getting Started with Create React App
+# 💇‍♀️ Sistema de Gestión - Salón de Belleza "La Dani"
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+¡Bienvenido al repositorio oficial del sistema de gestión para el Salón de Belleza "La Dani"!
+Este proyecto es una aplicación web moderna diseñada para optimizar los procesos administrativos, operativos y de atención al cliente del negocio.
 
-## Available Scripts
+## 🚀 Descripción del Proyecto
 
-In the project directory, you can run:
+El sistema permite la administración integral del salón, gestionando desde el agendamiento de citas y facturación, hasta el control de inventario y liquidación de nómina de empleados. Está construido siguiendo estándares profesionales de desarrollo, garantizando escalabilidad y facilidad de mantenimiento.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🛠️ Tecnologías y Arquitectura
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+El proyecto ha sido refactorizado recientemente para cumplir con los principios **SOLID** y **Clean Architecture**.
 
-### `npm test`
+### **Frontend (Cliente)**
+*   **Framework:** React 18
+*   **Estilos:** CSS3 (Diseño responsivo y personalizado)
+*   **Patrones:**
+    *   **Custom Hooks:** Para separar la lógica de negocio de la interfaz (ej. `useAdminData`, `useVendedorData`).
+    *   **Services Layer:** Para centralizar la comunicación HTTP con la API.
+    *   **Componentes:** Arquitectura modular y reutilizable.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### **Backend (Servidor)**
+*   **Framework:** FastAPI (Python)
+*   **Base de Datos:** MySQL
+*   **Arquitectura:** Clean Architecture (Capas)
+    *   **Domain:** Modelos y Entidades (Pydantic).
+    *   **Infrastructure:** Repositorios y conexión a Base de Datos.
+    *   **API:** Rutas y Controladores separados por contexto (`users`, `inventory`, `citas`, etc.).
+    *   **Core:** Configuración centralizada.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📦 Módulos y Funcionalidades
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+El sistema cuenta con acceso basado en roles (**Administrador**, **Vendedor**, **Estilista**).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 1. 🔐 Módulo de Autenticación
+*   Login seguro validando credenciales y rol de usuario.
+*   Redireccionamiento automático al dashboard correspondiente según el perfil.
 
-### `npm run eject`
+### 2. 👨‍💼 Módulo Administrador
+Diseñado para el dueño o gerente del salón.
+*   **Gestión de Empleados:** CRUD completo (Crear, Leer, Actualizar, Eliminar) de personal.
+*   **Control de Inventario:** Administración de productos (con reporte CSV).
+*   **Liquidación de Comisiones:**
+    *   Calcula automáticamente las comisiones (3%) para Estilistas y Vendedores.
+    *   Muestra el "Total Bruto Generado" y la "Utilidad Neta" del negocio.
+    *   Genera reportes visuales de rendimiento.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 3. 📅 Módulo Vendedor
+Diseñado para la recepción y caja.
+*   **Agenda de Citas:** Visualización y gestión de citas (Cola de espera y Confirmadas).
+*   **Facturación:** Generación de facturas de venta, integradas automáticamente con el reporte contable.
+*   **Gestión de Clientes:** Base de datos de clientes con historial y datos de contacto (CRUD).
+*   **Reporte de Ventas:** Visualización en tiempo real de lo facturado en el día.
+*   **Integración WhatsApp:** Botón para confirmar citas directamente al chat del cliente.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 4. ✂️ Módulo Estilista
+Diseñado para el personal operativo.
+*   **Mis Citas:** Visualización de la agenda asignada.
+*   **Gestión de Servicio:** Marcar servicios como finalizados para el cálculo de comisiones.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📂 Estructura del Proyecto
 
-## Learn More
+```text
+ladani/
+├── backend/                # Servidor FastAPI
+│   ├── app/
+│   │   ├── api/            # Endpoints (Rutas)
+│   │   ├── domain/         # Modelos de datos
+│   │   ├── infrastructure/ # Repositorios SQL
+│   │   └── core/           # Configuración
+│   └── main.py             # Punto de entrada
+│
+├── src/                    # Cliente React
+│   ├── components/         # Componentes visuales reutilizables
+│   ├── hooks/              # Lógica de negocio (State Management)
+│   ├── services/           # Conexión con Backend (Fetch)
+│   ├── pages/              # Vistas principales por Rol
+│   └── App.js              # Enrutamiento Principal
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## ⚙️ Instalación y Ejecución
 
-### Code Splitting
+### Prerrequisitos
+*   Node.js y NPM
+*   Python 3.10+
+*   MySQL Server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 1. Base de Datos
+Importa el script SQL en tu gestor de base de datos MySQL. Asegúrate de que la base de datos se llame `proyecto_formativo`.
 
-### Analyzing the Bundle Size
+### 2. Backend (Python)
+```bash
+cd backend
+# Instalar dependencias
+pip install fastapi uvicorn mysql-connector-python pydantic
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Ejecutar servidor
+python main.py
+```
+*El servidor correrá en `http://localhost:8000`*
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 3. Frontend (React)
+```bash
+# En la raíz del proyecto (ladani)
+npm install
+npm start
+```
+*La aplicación abrirá en `http://localhost:3000`*

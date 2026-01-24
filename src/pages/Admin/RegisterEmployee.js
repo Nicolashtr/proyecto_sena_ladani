@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-const RegisterEmployee = ({ onEmployeeRegistered, employeeData, onCancel }) => {
+const RegisterEmployee = ({ employeeData, onCancel, onSubmit }) => {
     const isEditing = !!employeeData;
     const [formData, setFormData] = useState({
         id_usuario: '',
         nombre: '',
         apellido: '',
         usuario: '',
-        contraseña: '',
+        contrasena: '', // Changed to match backend
         correo: '',
         numero_celular: '',
         perfil_usuario: '2'
@@ -18,7 +18,7 @@ const RegisterEmployee = ({ onEmployeeRegistered, employeeData, onCancel }) => {
         if (employeeData) {
             setFormData({
                 ...employeeData,
-                contraseña: '' // Leave password empty for security, handle in backend or require re-entry
+                contrasena: '' // Empty for security
             });
         }
     }, [employeeData]);
@@ -30,54 +30,13 @@ const RegisterEmployee = ({ onEmployeeRegistered, employeeData, onCancel }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        try {
-            // Ensure all fields are strings (especially id_usuario if it came as a number)
-            const submissionData = {
-                ...formData,
-                id_usuario: String(formData.id_usuario),
-                perfil_usuario: String(formData.perfil_usuario)
-            };
-
-            const url = isEditing
-                ? `http://localhost:8000/usuarios/${submissionData.id_usuario}`
-                : 'http://localhost:8000/usuarios';
-
-            const method = isEditing ? 'PUT' : 'POST';
-
-            const response = await fetch(url, {
-                method,
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(submissionData)
-            });
-
-            if (response.ok) {
-                alert(isEditing ? 'Empleado actualizado exitosamente' : 'Empleado registrado exitosamente');
-                if (onEmployeeRegistered) onEmployeeRegistered();
-            } else {
-                const data = await response.json();
-                console.error('Server error:', data);
-                let errorMessage = 'No se pudo procesar';
-
-                if (data.detail) {
-                    if (Array.isArray(data.detail)) {
-                        // Handle FastAPI validation error array
-                        errorMessage = data.detail.map(err => `${err.loc.join('.')}: ${err.msg}`).join('\n');
-                    } else if (typeof data.detail === 'string') {
-                        errorMessage = data.detail;
-                    } else {
-                        errorMessage = JSON.stringify(data.detail);
-                    }
-                }
-                alert('Error al guardar:\n' + errorMessage);
-            }
-        } catch (error) {
-            console.error('Fetch error:', error);
-            alert('Error de conexión con el servidor');
-        } finally {
-            setLoading(false);
+        // Call parent handler
+        const success = await onSubmit(formData, isEditing);
+        if (success) {
+            // Let parent handle closing/refreshing
         }
+        setLoading(false);
     };
-
 
     return (
         <div className="profile-content">
@@ -87,7 +46,7 @@ const RegisterEmployee = ({ onEmployeeRegistered, employeeData, onCancel }) => {
                 <input name="nombre" placeholder="Nombre" value={formData.nombre} onChange={handleChange} required />
                 <input name="apellido" placeholder="Apellido" value={formData.apellido} onChange={handleChange} required />
                 <input name="usuario" placeholder="Nombre de Usuario" value={formData.usuario} onChange={handleChange} required />
-                <input name="contraseña" type="password" placeholder={isEditing ? "Nueva Contraseña (opcional)" : "Contraseña"} value={formData.contraseña} onChange={handleChange} required={!isEditing} />
+                <input name="contrasena" type="password" placeholder={isEditing ? "Nueva Contraseña (opcional)" : "Contraseña"} value={formData.contrasena} onChange={handleChange} required={!isEditing} />
                 <input name="correo" type="email" placeholder="Correo Electrónico" value={formData.correo} onChange={handleChange} required />
                 <input name="numero_celular" placeholder="Celular" value={formData.numero_celular} onChange={handleChange} required />
                 <select name="perfil_usuario" value={formData.perfil_usuario} onChange={handleChange} style={{ padding: '12px', borderRadius: '12px', border: '1px solid #ffc1e3' }} required>
@@ -108,7 +67,5 @@ const RegisterEmployee = ({ onEmployeeRegistered, employeeData, onCancel }) => {
         </div>
     );
 };
-
-
 
 export default RegisterEmployee;

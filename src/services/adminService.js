@@ -7,14 +7,14 @@ export const fetchEmployees = async () => {
 };
 
 export const createEmployee = async (employeeData) => {
-    // Map frontend 'contraseña' to backend 'contrasena' if present
+    // Mapear 'contraseña' del frontend a 'contrasena' del backend si está presente
     const payload = { ...employeeData };
     if (payload.contraseña !== undefined) {
         payload.contrasena = payload.contraseña;
         delete payload.contraseña;
     }
 
-    // Ensure IDs are strings
+    // Asegurar que los IDs sean cadenas de texto
     if (payload.id_usuario) payload.id_usuario = String(payload.id_usuario);
     if (payload.perfil_usuario) payload.perfil_usuario = String(payload.perfil_usuario);
 

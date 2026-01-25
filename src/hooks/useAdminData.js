@@ -12,11 +12,11 @@ export const useAdminData = () => {
             const data = await service.fetchEmployees();
             setEmployees(data);
             if (data.length > 0 && !selectedEmployee) {
-                // Only select default if none selected or if previously selected is gone?
-                // For simplicity, we can let the UI handle default selection or do it here.
-                // Keeping it consistent with original:
-                // setSelectedEmployee(data[0]); -> This might override user selection on refresh.
-                // Better to handle in UI or if selectedEmployee is null.
+                // ¿Solo seleccionar por defecto si no hay ninguno seleccionado o si el previamente seleccionado ya no existe?
+                // Para simplificar, podemos dejar que la UI maneje la selección por defecto o hacerlo aquí.
+                // Manteniéndolo consistente con el original:
+                // setSelectedEmployee(data[0]); -> Esto podría anular la selección del usuario al refrescar.
+                // Es mejor manejarlo en la UI o si selectedEmployee es null.
             }
         } catch (error) { console.error(error); }
     }, [selectedEmployee]);
@@ -67,7 +67,7 @@ export const useAdminData = () => {
         }
     };
 
-    // Liquidation Logic
+    // Lógica de Liquidación
     const liquidationStats = useMemo(() => {
         const STYLIST_COMMISSION = 0.03;
         const SELLER_COMMISSION = 0.03;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './administrador.css';
 import { useAdminData } from '../../hooks/useAdminData';
 import Inventory from './Inventory';
-import RegisterEmployee from './RegisterEmployee'; // Local for now or move to components? It's in pages/Admin so local import is fine
+import RegisterEmployee from './RegisterEmployee'; // ¿Local por ahora o mover a componentes? Está en pages/Admin así que la importación local está bien
 import { LiquidationView } from '../../components/admin/LiquidationView';
 import { EmployeesSidebar, ProfileView } from '../../components/admin/ProfileComponents';
 

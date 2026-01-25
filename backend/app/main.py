@@ -13,7 +13,7 @@ def create_app() -> FastAPI:
         allow_headers=["*"],
     )
 
-    # Include Routers
+    # Incluir Rutas
     app.include_router(users.router, tags=["Users"])
     app.include_router(inventory.router, tags=["Inventory"])
     app.include_router(citas.router, tags=["Citas"])

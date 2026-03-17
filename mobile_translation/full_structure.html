@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Esquema de Vistas - La Dani</title>
+</head>
+
+<body>
+    <!-- VISTA 1: LOGIN -->
+    <section id="view-login">
+        <h2>LOGIN</h2>
+        <div class="login-container">
+            <div class="logo">La Dani</div>
+            <form>
+                <input type="text" placeholder="Usuario o Cédula">
+                <input type="password" placeholder="Contraseña">
+                <button>Ingresar</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- VISTA 2: DASHBOARD ADMINISTRADOR (Gestión de Personal) -->
+    <section id="view-admin-main">
+        <h2>ADMIN - DASHBOARD</h2>
+        <header>Hola Administrador | 20/02/2026</header>
+        <div class="employee-list">
+            <div class="employee-card">
+                <span>👤</span>
+                <span>Nicolas Bocy</span>
+                <p>Administrador</p>
+            </div>
+        </div>
+        <div class="employee-detail">
+            <h3>Perfil de Empleado</h3>
+            <p>Nombre: Nicolas Bocy Developer</p>
+            <p>Documento: 1007569734</p>
+            <button>Editar Datos</button>
+            <button>Eliminar</button>
+        </div>
+    </section>
+
+    <!-- VISTA 3: INVENTARIO (Dentro de Admin) -->
+    <section id="view-inventory">
+        <h2>ADMIN - INVENTARIO</h2>
+        <form>
+            <input placeholder="Nombre Producto">
+            <input placeholder="Cantidad" type="number">
+            <input placeholder="Precio" type="number">
+            <textarea placeholder="Descripción"></textarea>
+            <button>Ingresar Producto</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cant.</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Shampoo Pro</td>
+                    <td>15</td>
+                    <td>25000</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- VISTA 4: DASHBOARD VENDEDOR (Citas y Agenda) -->
+    <section id="view-vendedor-agenda">
+        <h2>VENDEDOR - AGENDA</h2>
+        <aside>
+            <button>📅 Agendar</button>
+            <button>🧾 Facturar</button>
+            <button>👥 Clientes</button>
+        </aside>
+        <div class="citas-list">
+            <div class="cita-item">
+                <h4>Cita: Ana García</h4>
+                <p>Servicio: Corte y Peinado</p>
+                <p>Hora: 10:00 AM</p>
+                <button>Confirmar / Editar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- VISTA 5: FACTURACIÓN (Modal) -->
+    <section id="view-facturacion">
+        <h2>VENDEDOR - FACTURACIÓN</h2>
+        <form>
+            <input placeholder="Cédula Cliente">
+            <input placeholder="Nombre Cliente">
+            <input placeholder="Valor" type="number">
+            <select>
+                <option>Efectivo</option>
+                <option>Transferencia</option>
+            </select>
+            <button>Generar Factura</button>
+        </form>
+    </section>
+
+    <!-- BARRA DE NAVEGACIÓN GLOBAL (Para Móvil) -->
+    <nav class="mobile-nav">
+        <div class="nav-item">🏠 Inicio</div>
+        <div class="nav-item">👥 Personal/Clientes</div>
+        <div class="nav-item">📋 Inventario</div>
+        <div class="nav-item">🚪 Salir</div>
+    </nav>
+</body>
+
+</html>

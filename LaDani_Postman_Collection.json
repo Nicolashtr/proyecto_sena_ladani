@@ -1,0 +1,201 @@
+{
+    "info": {
+        "_postman_id": "la-dani-api-tests",
+        "name": "La Dani API",
+        "description": "Collection of API tests for La Dani application Backend",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Auth",
+            "item": [
+                {
+                    "name": "Login",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"usuario\": \"1007569734\",\n    \"password\": \"123\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/login",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "login"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Usuarios",
+            "item": [
+                {
+                    "name": "Get All Usuarios",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/usuarios",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "usuarios"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Register Usuario",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id_usuario\": \"999\",\n    \"nombre\": \"Test User\",\n    \"apellido\": \"Test\",\n    \"usuario\": \"testuser\",\n    \"correo\": \"test@test.com\",\n    \"numero_celular\": \"123456\",\n    \"perfil_usuario\": \"Vendedor\",\n    \"contrasena\": \"123\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/usuarios",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "usuarios"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Inventario",
+            "item": [
+                {
+                    "name": "Get Inventario",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/inventario",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "inventario"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Citas",
+            "item": [
+                {
+                    "name": "Get Citas",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/citas",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "citas"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Facturas",
+            "item": [
+                {
+                    "name": "Get Facturas",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/facturas",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "facturas"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Ventas",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/ventas",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "ventas"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Clientes",
+            "item": [
+                {
+                    "name": "Get Clientes",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/clientes",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "clientes"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:8000",
+            "type": "string"
+        }
+    ]
+}

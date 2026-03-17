@@ -22,8 +22,8 @@ class UserCreate(BaseModel):
     id_usuario: str
     nombre: Optional[str] = None
     apellido: Optional[str] = None
-    usuario: Optional[str] = None
-    contrasena: Optional[str] = None
+    usuario: str
+    contrasena: str
     correo: Optional[str] = None
     numero_celular: Optional[str] = None
     perfil_usuario: Optional[str] = None

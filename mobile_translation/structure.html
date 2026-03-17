@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Dani Dashboard Layout</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Encabezado superior -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <h2>¡Hola, Administrador!</h2>
+                <p>Gestión de Personal</p>
+            </div>
+            <div class="header-right">
+                <span class="date-text">31/01/2026</span>
+                <div class="user-avatar-circle">👤</div>
+            </div>
+        </header>
+
+        <!-- Contenido principal (Cuerpo blanco redondeado) -->
+        <main class="dashboard-main">
+            <div class="profile-content">
+                <div class="profile-header-icon">👤</div>
+                <h3 class="profile-name-title">Nicolas Bocy</h3>
+                
+                <div class="profile-fields">
+                    <div class="field-group">
+                        <span class="field-label">Documento</span>
+                        <span class="field-value">1007569734</span>
+                    </div>
+                    
+                    <div class="field-group">
+                        <span class="field-label">Nombre completo</span>
+                        <span class="field-value">Nicolas Bocy Developer</span>
+                    </div>
+
+                    <div class="field-group">
+                        <span class="field-label">Rol</span>
+                        <span class="field-value">Administrador</span>
+                    </div>
+
+                    <div class="field-group">
+                        <span class="field-label">Celular</span>
+                        <span class="field-value">3100000000</span>
+                    </div>
+                </div>
+
+                <button class="deactivate-btn">Actualizar Datos</button>
+            </div>
+        </main>
+
+        <!-- Barra de navegación inferior -->
+        <footer class="dashboard-footer">
+            <div class="footer-item active-tab">
+                <span class="footer-icon">🏠</span>
+                <span>Inicio</span>
+            </div>
+            <div class="footer-item">
+                <span class="footer-icon">👤+</span>
+                <span>Registrar</span>
+            </div>
+            <div class="footer-item">
+                <span class="footer-icon">💵</span>
+                <span>Ventas</span>
+            </div>
+            <div class="footer-item">
+                <span class="footer-icon">📋</span>
+                <span>Inventario</span>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

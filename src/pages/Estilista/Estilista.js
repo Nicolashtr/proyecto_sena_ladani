@@ -175,7 +175,7 @@ const Estilista = () => {
                 </button>
             </footer>
 
-            <div className="logout-btn-est" onClick={() => window.location.href = '/'}>
+            <div className="logout-btn-est" onClick={() => { localStorage.removeItem('user'); window.location.href = '/'; }}>
                 🚪
             </div>
         </div>

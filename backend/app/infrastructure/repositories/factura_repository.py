@@ -21,28 +21,32 @@ class FacturaRepository:
                 c_res = cursor.fetchone()
                 if c_res: id_cliente = c_res[0]
                 else:
-                    cursor.execute("INSERT INTO clientes (id_cliente, nombre_cliente) VALUES (%s, %s)", (id_cand, request.nombre_cliente))
+                    cursor.execute("INSERT INTO clientes (id_cliente, nombre_cliente, apellido, numero_celular) VALUES (%s, %s, '', '0')", (id_cand, request.nombre_cliente))
                     id_cliente = id_cand
             except ValueError:
                 cursor.execute("SELECT id_cliente FROM clientes WHERE nombre_cliente = %s", (request.nombre_cliente,))
                 c_res = cursor.fetchone()
                 if c_res: id_cliente = c_res[0]
                 else:
-                    cursor.execute("INSERT INTO clientes (nombre_cliente) VALUES (%s)", (request.nombre_cliente,))
+                    cursor.execute("INSERT INTO clientes (nombre_cliente, apellido, numero_celular) VALUES (%s, '', '0')", (request.nombre_cliente,))
                     id_cliente = cursor.lastrowid
 
             # 3. Procedimiento Logic
             cursor.execute("SELECT id_procedimiento FROM procedimientos WHERE id_procedimiento = %s", (1,))
             if not cursor.fetchone():
-                cursor.execute("INSERT INTO procedimientos (id_procedimiento, valor_procedimiento) VALUES (1, '0')")
+                try:
+                    cursor.execute("INSERT INTO procedimientos (id_procedimiento, nombre_procedimiento, valor_procedimiento) VALUES (1, 'NA', '0')")
+                except:
+                    pass
             cursor.execute("SELECT id_procedimiento FROM procedimientos WHERE id_procedimiento > 0 LIMIT 1")
-            id_procedimiento = cursor.fetchone()[0]
+            res_proc = cursor.fetchone()
+            id_procedimiento = res_proc[0] if res_proc else 1
 
             # 4. Venta
             today_date = date.today().strftime('%Y-%m-%d')
-            query_venta = """INSERT INTO ventas (id_cliente, id_procedimiento, fecha_procedimiento, forma_pago, valor_procedimiento, vendedor, id_vendedor, id_perfil) 
-                             VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
-            cursor.execute(query_venta, (id_cliente, id_procedimiento, today_date, request.metodo_pago, str(request.valor), request.vendedor, id_ven, id_per))
+            query_venta = """INSERT INTO ventas (id_cliente, id_procedimiento, numero_celular, fecha_procedimiento, forma_pago, valor_procedimiento, vendedor, id_vendedor, id_perfil) 
+                             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+            cursor.execute(query_venta, (id_cliente, id_procedimiento, '0', today_date, request.metodo_pago, str(request.valor), request.vendedor, id_ven, id_per))
 
             conn.commit()
             return True

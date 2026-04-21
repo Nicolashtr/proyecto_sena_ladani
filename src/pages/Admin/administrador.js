@@ -84,7 +84,7 @@ const Dashboard = () => {
                 <FooterBtn icon="👤+" label="Registrar" onClick={handleOpenRegister} />
                 <FooterBtn icon="💵" label="Liquidación" active={activeModule === 'liquidate'} onClick={() => handleTabChange('liquidate')} />
                 <FooterBtn icon="📋" label="Inventario" active={activeModule === 'inventory'} onClick={() => handleTabChange('inventory')} />
-                <FooterBtn icon="🚪" label="Salir" onClick={() => window.location.href = '/'} />
+                <FooterBtn icon="🚪" label="Salir" onClick={() => { localStorage.removeItem('user'); window.location.href = '/'; }} />
             </footer>
         </div>
     );

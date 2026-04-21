@@ -252,7 +252,7 @@ const Vendedor = () => {
                     )}
                 </section>
             </main>
-            <div className="logout-btn-ven" onClick={() => window.location.href = '/'}>🚪</div>
+            <div className="logout-btn-ven" onClick={() => { localStorage.removeItem('user'); window.location.href = '/'; }}>🚪</div>
         </div>
     );
 };

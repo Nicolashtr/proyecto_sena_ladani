@@ -95,9 +95,7 @@ const Login = () => {
                         />
                     </div>
 
-                    <a href="#" className="forgot-password">¿Olvidaste tu contraseña?</a>
-
-                    <div className="button-group">
+                    <span style={{cursor: "pointer"}} className="forgot-password">¿Olvidaste tu contraseña?</span>                    <div className="button-group">
                         <button type="submit" className="btn btn-continue" disabled={loading}>
                             {loading ? 'Cargando...' : 'Continuar'}
                         </button>

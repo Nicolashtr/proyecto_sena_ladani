@@ -8,7 +8,7 @@ const Estilista = () => {
     const [selectedService, setSelectedService] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const todayDateStr = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+    // const todayDateStr = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
 
     const todayDisplay = new Date().toLocaleDateString('es-ES', {
         day: '2-digit',
@@ -22,6 +22,7 @@ const Estilista = () => {
             setUserData(JSON.parse(storedUser));
         }
         fetchCitas();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const fetchCitas = async () => {

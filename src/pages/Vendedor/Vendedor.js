@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useVendedorData } from '../../hooks/useVendedorData';
 import { FacturaModal } from '../../components/shared/FacturaModal';
+import Swal from 'sweetalert2';
 import './Vendedor.css';
 
 const Vendedor = () => {
@@ -33,16 +34,41 @@ const Vendedor = () => {
         e.preventDefault();
         try {
             await saveCliente(clienteData, !!selectedCliente);
-            alert(selectedCliente ? 'Cliente actualizado' : 'Cliente registrado');
+            Swal.fire({
+                title: '¡Éxito!',
+                text: selectedCliente ? 'Cliente actualizado' : 'Cliente registrado',
+                icon: 'success',
+                confirmButtonColor: '#ed4b91'
+            });
             setShowClienteModal(false);
         } catch (error) {
-            alert('Error: ' + error.message);
+            Swal.fire({
+                title: 'Error',
+                text: 'Error: ' + error.message,
+                icon: 'error',
+                confirmButtonColor: '#ed4b91'
+            });
         }
     };
 
     const handleDeleteClienteLocal = async (id) => {
-        if (window.confirm('¿Eliminar cliente?')) {
-            try { await deleteCliente(id); } catch (error) { alert(error.message); }
+        const result = await Swal.fire({
+            title: '¿Estás seguro?',
+            text: '¿Deseas eliminar este cliente?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#ed4b91',
+            cancelButtonColor: '#999',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        });
+        if (result.isConfirmed) {
+            try { 
+                await deleteCliente(id); 
+                Swal.fire({ title: 'Eliminado', text: 'Cliente eliminado', icon: 'success', confirmButtonColor: '#ed4b91' });
+            } catch (error) { 
+                Swal.fire({ title: 'Error', text: error.message, icon: 'error', confirmButtonColor: '#ed4b91' }); 
+            }
         }
     };
 
@@ -67,16 +93,16 @@ const Vendedor = () => {
         e.preventDefault();
         try {
             await confirmCita(selectedCita.id, editData);
-            alert('Cita confirmada');
+            Swal.fire({ title: '¡Confirmada!', text: 'Cita confirmada exitosamente', icon: 'success', confirmButtonColor: '#ed4b91' });
             setSelectedCita(null);
-        } catch (error) { alert('Error al actualizar'); }
+        } catch (error) { Swal.fire({ title: 'Error', text: 'Error al actualizar la cita', icon: 'error', confirmButtonColor: '#ed4b91' }); }
     };
 
     const onFacturaSave = async (data) => {
         try {
             await generateFactura(data);
-            alert('Factura generada');
-        } catch (error) { alert(error.message); }
+            Swal.fire({ title: '¡Factura generada!', text: 'La factura se generó exitosamente', icon: 'success', confirmButtonColor: '#ed4b91' });
+        } catch (error) { Swal.fire({ title: 'Error', text: error.message, icon: 'error', confirmButtonColor: '#ed4b91' }); }
     };
 
     return (
@@ -211,10 +237,50 @@ const Vendedor = () => {
                             ) : (
                                 <div className="vendedor-form-container">
                                     <button onClick={() => setSelectedCita(null)} style={{ background: 'none', border: 'none', color: '#ed4b91', cursor: 'pointer', marginBottom: '15px', fontWeight: 'bold' }}>⬅️ Volver</button>
+                                    
+                                    {selectedCita.descripcion && (
+                                        <div style={{ marginBottom: '15px', padding: '10px', background: '#f9f9f9', borderRadius: '8px' }}>
+                                            <strong>📝 Descripción del cliente:</strong>
+                                            <p style={{ margin: '5px 0 0 0', color: '#555' }}>{selectedCita.descripcion}</p>
+                                        </div>
+                                    )}
+
+                                    {selectedCita.imagen_referencia && (
+                                        <div style={{ marginBottom: '15px', padding: '10px', background: '#f9f9f9', borderRadius: '8px' }}>
+                                            <strong>🖼️ Imagen de referencia:</strong><br />
+                                            <img src={selectedCita.imagen_referencia} alt="Referencia" style={{ maxWidth: '100%', maxHeight: '150px', borderRadius: '5px', marginTop: '5px' }} />
+                                        </div>
+                                    )}
+
                                     <form className="vendedor-form" onSubmit={handleUpdateCita}>
                                         <div className="form-field"><label>Servicio</label><input value={editData.servicio} onChange={e => setEditData({ ...editData, servicio: e.target.value })} /></div>
                                         <div className="form-field"><label>Fecha</label><input type="date" value={editData.fecha} onChange={e => setEditData({ ...editData, fecha: e.target.value })} /></div>
-                                        <div className="form-field"><label>Hora</label><input type="time" value={editData.hora} onChange={e => setEditData({ ...editData, hora: e.target.value })} /></div>
+                                        <div className="form-field"><label>Hora</label>
+                                            <select value={editData.hora} onChange={e => setEditData({ ...editData, hora: e.target.value })}>
+                                                <option value="" disabled>Selecciona una hora</option>
+                                                <option value="09:00">09:00 AM</option>
+                                                <option value="09:30">09:30 AM</option>
+                                                <option value="10:00">10:00 AM</option>
+                                                <option value="10:30">10:30 AM</option>
+                                                <option value="11:00">11:00 AM</option>
+                                                <option value="11:30">11:30 AM</option>
+                                                <option value="12:00">12:00 PM</option>
+                                                <option value="12:30">12:30 PM</option>
+                                                <option value="13:00">01:00 PM</option>
+                                                <option value="13:30">01:30 PM</option>
+                                                <option value="14:00">02:00 PM</option>
+                                                <option value="14:30">02:30 PM</option>
+                                                <option value="15:00">03:00 PM</option>
+                                                <option value="15:30">03:30 PM</option>
+                                                <option value="16:00">04:00 PM</option>
+                                                <option value="16:30">04:30 PM</option>
+                                                <option value="17:00">05:00 PM</option>
+                                                <option value="17:30">05:30 PM</option>
+                                                <option value="18:00">06:00 PM</option>
+                                                <option value="18:30">06:30 PM</option>
+                                                <option value="19:00">07:00 PM</option>
+                                            </select>
+                                        </div>
                                         <div className="form-field"><label>Estilista</label><input value={editData.estilista} onChange={e => setEditData({ ...editData, estilista: e.target.value })} /></div>
                                         <div className="form-field"><label>Costo</label><input type="number" value={editData.costo} onChange={e => setEditData({ ...editData, costo: e.target.value })} /></div>
                                         <button type="submit" className="btn-action">Guardar Cambio</button>

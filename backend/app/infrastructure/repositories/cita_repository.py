@@ -31,9 +31,9 @@ class CitaRepository:
         if not conn: return None
         try:
             cursor = conn.cursor()
-            query = """INSERT INTO citas (nombre, telefono, servicio, fecha, hora, estado, costo) 
-                       VALUES (%s, %s, %s, %s, %s, 'Pendiente', %s)"""
-            cursor.execute(query, (data.nombre, data.telefono, data.servicio, data.fecha, data.hora, costo))
+            query = """INSERT INTO citas (nombre, telefono, servicio, fecha, hora, estado, costo, descripcion, imagen_referencia) 
+                       VALUES (%s, %s, %s, %s, %s, 'Pendiente', %s, %s, %s)"""
+            cursor.execute(query, (data.nombre, data.telefono, data.servicio, data.fecha, data.hora, costo, data.descripcion, data.imagen_referencia))
             conn.commit()
             return True
         finally:

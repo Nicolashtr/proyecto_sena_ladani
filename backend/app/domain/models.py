@@ -11,6 +11,8 @@ class AgendaRequest(BaseModel):
     servicio: str
     fecha: str
     hora: str
+    descripcion: Optional[str] = None
+    imagen_referencia: Optional[str] = None
 
 class InventoryItem(BaseModel):
     nombre_producto: str

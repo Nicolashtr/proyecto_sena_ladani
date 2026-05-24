@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Estilista.css';
+import Swal from 'sweetalert2';
 
 const Estilista = () => {
     const [activeTab, setActiveTab] = useState('pending'); // 'pending' or 'completed'
@@ -37,7 +38,7 @@ const Estilista = () => {
 
                 // Si no hay seleccionado, elegir el primero de los pendientes
                 if (!selectedService) {
-                    const pending = data.filter(s => s.estado === 'Pendiente');
+                    const pending = data.filter(s => s.estado === 'Confirmada');
                     if (pending.length > 0) setSelectedService(pending[0]);
                 }
             }
@@ -55,16 +56,26 @@ const Estilista = () => {
                 method: 'PUT'
             });
             if (response.ok) {
-                alert('Servicio finalizado con éxito');
+                Swal.fire({
+                    title: '¡Finalizado!',
+                    text: 'Servicio finalizado con éxito',
+                    icon: 'success',
+                    confirmButtonColor: '#ed4b91'
+                });
                 fetchCitas();
                 setSelectedService(null);
             }
         } catch (error) {
-            alert('Error al finalizar el servicio');
+            Swal.fire({
+                title: 'Error',
+                text: 'Error al finalizar el servicio',
+                icon: 'error',
+                confirmButtonColor: '#ed4b91'
+            });
         }
     };
 
-    const pendingServices = services.filter(s => s.estado === 'Pendiente');
+    const pendingServices = services.filter(s => s.estado === 'Confirmada');
     const completedServices = services.filter(s => s.estado === 'Finalizado');
 
     const displayedServices = activeTab === 'pending' ? pendingServices : completedServices;
@@ -117,7 +128,7 @@ const Estilista = () => {
                 <section className="service-detail-view">
                     {selectedService ? (
                         <>
-                            <h1 className="detail-title">{selectedService.estado === 'Pendiente' ? 'Servicio en curso' : 'Servicio Completado'}</h1>
+                            <h1 className="detail-title">{selectedService.estado === 'Confirmada' ? 'Servicio en curso' : 'Servicio Completado'}</h1>
 
                             <div className="detail-info-group">
                                 <div className="icon-box">✂️</div>
@@ -151,7 +162,27 @@ const Estilista = () => {
                                 </div>
                             </div>
 
-                            {selectedService.estado === 'Pendiente' && (
+                            {selectedService.descripcion && (
+                                <div className="detail-info-group">
+                                    <div className="icon-box">📝</div>
+                                    <div>
+                                        <div className="info-label">Descripción del cliente</div>
+                                        <div className="info-value">{selectedService.descripcion}</div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {selectedService.imagen_referencia && (
+                                <div className="detail-info-group">
+                                    <div className="icon-box">🖼️</div>
+                                    <div>
+                                        <div className="info-label">Imagen de referencia</div>
+                                        <img src={selectedService.imagen_referencia} alt="Referencia" style={{ maxWidth: '100%', maxHeight: '200px', borderRadius: '10px', marginTop: '10px' }} />
+                                    </div>
+                                </div>
+                            )}
+
+                            {selectedService.estado === 'Confirmada' && (
                                 <button className="btn-finish" onClick={handleFinish}>finalizar servicio</button>
                             )}
                         </>
